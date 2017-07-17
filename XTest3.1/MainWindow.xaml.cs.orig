@@ -1,0 +1,132 @@
+﻿using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Markup;
+using XTest3_Logic;
+
+namespace XTest3_1
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+
+        public static int CurTest;
+        public static string CurTestName;
+        private void Rc_Bar_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Mouse.LeftButton == MouseButtonState.Pressed)
+                DragMove();
+        }
+
+        private void Bt_Close_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Bt_Min_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Bt_Menu_1_Click(object sender, RoutedEventArgs e)
+        {
+            Gb_Sub1.Visibility = Gb_Sub1.Visibility.Equals(Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
+            Gb_Sub2.Visibility = Visibility.Collapsed;
+            Gb_Sub3.Visibility = Visibility.Collapsed;
+            Gb_Sub4.Visibility = Visibility.Collapsed;
+        }
+
+        private void Bt_Menu_2_Click(object sender, RoutedEventArgs e)
+        {
+            Gb_Sub2.Visibility = Gb_Sub2.Visibility.Equals(Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
+            Gb_Sub1.Visibility = Visibility.Collapsed;
+            Gb_Sub3.Visibility = Visibility.Collapsed;
+            Gb_Sub4.Visibility = Visibility.Collapsed;
+        }
+
+        private void Bt_Menu_3_Click(object sender, RoutedEventArgs e)
+        {
+            Gb_Sub3.Visibility = Gb_Sub3.Visibility.Equals(Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
+            Gb_Sub2.Visibility = Visibility.Collapsed;
+            Gb_Sub1.Visibility = Visibility.Collapsed;
+            Gb_Sub4.Visibility = Visibility.Collapsed;
+        }
+
+        private void Bt_Menu_4_Click(object sender, RoutedEventArgs e)
+        {
+            Gb_Sub4.Visibility = Gb_Sub4.Visibility.Equals(Visibility.Collapsed) ? Visibility.Visible : Visibility.Collapsed;
+            Gb_Sub2.Visibility = Visibility.Collapsed;
+            Gb_Sub3.Visibility = Visibility.Collapsed;
+            Gb_Sub1.Visibility = Visibility.Collapsed;
+        }
+
+
+        private void Bt_S41_OnClick(object sender, RoutedEventArgs e)
+        {
+            CurTest = 41;
+            CurTestName = Bt_S41.Content.ToString();
+            OpenTheory();
+        }
+
+        private void OpenTheory()
+        {
+            try
+            {
+                string path = "C:/XMLFile1.xaml";
+                switch (CurTest)
+                {
+                    case 11:
+                        path = "C:/XMLFile1.xaml";
+                        break;
+                    case 41:
+                        path = "C:/XMLFile1.xaml";
+                        break;
+                }
+                using (FileStream fs = File.Open(path, FileMode.Open))
+                {
+                    FlowDocument document = (FlowDocument)XamlReader.Load(fs);
+                    Tb_Info.Document = document;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void Bt_S42_OnClick(object sender, RoutedEventArgs e)
+        {
+            CurTest = 42;
+            CurTestName = Bt_S42.Content.ToString();
+            OpenTheory();
+        }
+
+        private void Bt_S43_OnClick(object sender, RoutedEventArgs e)
+        {
+            CurTest = 43;
+            CurTestName = Bt_S43.Content.ToString();
+            OpenTheory();
+        }
+
+        
+        private void Bt_Code_OnClick(object sender, RoutedEventArgs e)
+        {
+            //CheckCode.Check(_curTest);
+        }
+
+        private void Bt_Test_Click(object sender, RoutedEventArgs e)
+        {
+            W_Test wt = new W_Test {Owner = this};
+            wt.ShowDialog();
+        }
+
+        
+    }
+}

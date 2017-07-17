@@ -1,0 +1,113 @@
+<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Paragraph FontSize="24" > 
+Код с проверкой по модулю q. Краткие теоретические сведения.
+</Paragraph> 
+<Paragraph> 
+ Принцип построения данного кода аналогичен по построению двоичного кода с одной проверкой на четность по mod 2. Отличие в построении заключается в дополнении кодовых комбинаций первичного q-ичного кода одним проверочным разрядом до значения основания (алфавита) кода q, т.е. если кодовая комбинация является множеством из k элементов {a1a2...ak}, где a1, a2, ..., ak – информационные элементы кодовой комбинации, принимающие значения от 0 до (q-1), то проверочный разряд b1 определяется суммой этих элементов по mod q:
+</Paragraph> 
+<Paragraph> 
+b1 = q - (a1 + a2 + ... + ak) mod q.
+</Paragraph> 
+<Paragraph> 
+Например:
+</Paragraph> 
+<Paragraph> 
+Пусть кодовая комбинация состоит из 4 элементов, т.е k = 4, и алфавит состоит из 4 цифр {0,1,2,3}, т.е. q = 4.
+Определим проверочный разряд и запишем новую комбинацию. a1 = 1; a2 = 0; a3 = 3; a4 = 2.
+Проверочный разряд равен b1 = 4 - ( 1 + 0 + 3 + 2 ) mod 4 = 4 - 2 = 2. Комбинация 10322.
+</Paragraph> 
+<Paragraph> 
+Проверка на наличие ошибки: 
+</Paragraph> 
+<Paragraph> 
+10322 S = (1 + 0 + 3 + 2 + 2) mod 4 = 0 без ошибки;
+</Paragraph> 
+<Paragraph> 
+12322 S = (1 + 2 + 3 + 2 + 2) mod 4 = 2 с ошибкой.
+</Paragraph> 
+
+<Table>
+                <TableRowGroup Paragraph.TextAlignment="left">
+                    <TableRow FontWeight="Bold" >
+                        <TableCell>
+                            <Paragraph>Буква</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>Десятичное</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>Двоичное</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph>А</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>10</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1010</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph>В</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>11</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1011</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph>С</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>12</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1100</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph>D</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>13</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1101</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                    <TableRow>
+                        <TableCell>
+                            <Paragraph>E</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>14</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1110</Paragraph>
+                        </TableCell>
+                    </TableRow>
+					
+					<TableRow>
+                        <TableCell>
+                            <Paragraph>F</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>15</Paragraph>
+                        </TableCell>
+                        <TableCell>
+                            <Paragraph>1111</Paragraph>
+                        </TableCell>
+                    </TableRow>
+                </TableRowGroup>
+            </Table>
+			
+</FlowDocument>

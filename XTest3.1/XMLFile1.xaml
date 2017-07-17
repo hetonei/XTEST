@@ -1,0 +1,19 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <List>
+      <ListItem><Paragraph>ListItem 1</Paragraph></ListItem>
+      <ListItem><Paragraph>ListItem 2</Paragraph></ListItem>
+      <ListItem><Paragraph>ListItem 3</Paragraph></ListItem>
+      <ListItem><Paragraph>ListItem 4</Paragraph></ListItem>
+      <ListItem><Paragraph>ListItem 5</Paragraph></ListItem>
+    </List>
+    <Section><Paragraph>
+      <Bold>Код Грея. Краткие теоретические сведения</Bold>
+    </Paragraph>
+	<Paragraph>
+       Отражённые ( рефлексные ) коды строятся таким образом, что соседние кодовые комбинации, в отличии от простых двоичных кодов, различаются цифрой только в одном разряде, т.е. кодовое расстояние между соседними кодовыми комбинациями такого кода равно единице. Из отражённых кодов наибольшее распространение получил код Грея.
+	   
+    </Paragraph>
+	</Section>
+
+</FlowDocument>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EC5E9DBA-8D3B-456C-B50E-A731C2B6E8AB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XTest3_Logic</RootNamespace>
+    <AssemblyName>XTest3_Logic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CheckCode.cs" />
+    <Compile Include="Codes\Canal\4B3T.cs" />
+    <Compile Include="Codes\Canal\DuoBi.cs" />
+    <Compile Include="Codes\Canal\Man2.cs" />
+    <Compile Include="Codes\Canal\MDuoBi.cs" />
+    <Compile Include="Codes\Canal\Quaz.cs" />
+    <Compile Include="Codes\Loop\Abramson.cs" />
+    <Compile Include="Codes\Loop\BHX.cs" />
+    <Compile Include="Codes\Loop\Faira.cs" />
+    <Compile Include="Codes\Loop\Hemming.cs" />
+    <Compile Include="Codes\Not2\EzRepeat.cs" />
+    <Compile Include="Codes\Not2\Iterative.cs" />
+    <Compile Include="Codes\Not2\ModuleQ.cs" />
+    <Compile Include="Codes\Not2\Pervich.cs" />
+    <Compile Include="Codes\Other\Berger.cs" />
+    <Compile Include="Codes\Other\Grey.cs" />
+    <Compile Include="Codes\Other\Huffman.cs" />
+    <Compile Include="Codes\Other\KolInfoEntropy.cs" />
+    <Compile Include="Codes\Other\Recurrence.cs" />
+    <Compile Include="Codes\Other\Shennon-Phano.cs" />
+    <Compile Include="Codes\Other\Sputniki.cs" />
+    <Compile Include="Codes\Other\TwoTen.cs" />
+    <Compile Include="Codes\System\Allais.cs" />
+    <Compile Include="Codes\System\HemmingS.cs" />
+    <Compile Include="Codes\System\Reed-Maller.cs" />
+    <Compile Include="Codes\System\Varmashov.cs" />
+    <Compile Include="Testing\Answer.cs" />
+    <Compile Include="Testing\Generator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\Question.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

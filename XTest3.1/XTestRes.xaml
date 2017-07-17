@@ -1,0 +1,1491 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:ee="http://schemas.microsoft.com/expression/2010/effects" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
+	<Style x:Key="ButtonMS" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<Grid x:Name="Grid">
+						
+						<!-- Content Presenter is where the text content etc is placed by the control -->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFAEACAC"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="White"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+							<Rectangle.Effect>
+								<DropShadowEffect Opacity="0.6" BlurRadius="18"/>
+							</Rectangle.Effect>
+						</Rectangle>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" TextBlock.FontFamily="Tahoma" TextBlock.Foreground="White"/>
+						
+					</Grid>
+					
+					<!--Each state sets a brush on the Border in the template -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true"/>
+						<Trigger Property="IsMouseOver" Value="true"/>
+						<Trigger Property="IsPressed" Value="true"/>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="FlowDocumentReaderMS" TargetType="{x:Type FlowDocumentReader}">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type FlowDocumentReader}">
+					<DockPanel Language="en-us" LastChildFill="True" Uid="DockPanel_3">
+						<Grid Background="{TemplateBinding Background}" DockPanel.Dock="Bottom" HorizontalAlignment="Stretch" Uid="Grid_31">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<Rectangle Grid.ColumnSpan="3" Fill="Black" HorizontalAlignment="Stretch" Height="26.4" VerticalAlignment="Top" Opacity="0.5"/>
+							<StackPanel Grid.Column="0" Orientation="Horizontal" Uid="StackPanel_5">
+								<ToggleButton x:Name="FindButton" Command="ApplicationCommands.Find" Focusable="False" Margin="3,0" ToolTip="Find" Uid="ToggleButton_1">
+									<ToggleButton.Style>
+										<Style TargetType="{x:Type ToggleButton}">
+											<Style.BasedOn>
+												<Style TargetType="{x:Type ButtonBase}">
+													<Setter Property="Focusable" Value="False"/>
+													<Setter Property="Opacity" Value="0.5"/>
+													<Setter Property="Cursor" Value="Hand"/>
+													<Setter Property="Background" Value="Transparent"/>
+													<Setter Property="Padding" Value="3,1"/>
+													<Setter Property="BorderBrush" Value="{x:Null}"/>
+													<Setter Property="BorderThickness" Value="0"/>
+													<Setter Property="MinWidth" Value="0"/>
+													<Setter Property="MinHeight" Value="0"/>
+													<Setter Property="Template">
+														<Setter.Value>
+															<ControlTemplate TargetType="{x:Type ButtonBase}">
+																<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																	<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																</Border>
+																<ControlTemplate.Triggers>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																	<Trigger Property="IsPressed" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																</ControlTemplate.Triggers>
+															</ControlTemplate>
+														</Setter.Value>
+													</Setter>
+													<Style.Triggers>
+														<Trigger Property="IsEnabled" Value="False">
+															<Setter Property="Opacity" Value="0.3"/>
+														</Trigger>
+														<Trigger Property="IsMouseOver" Value="True">
+															<Setter Property="Opacity" Value="1"/>
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</Style.BasedOn>
+											<Style.Triggers>
+												<Trigger Property="IsEnabled" Value="False">
+													<Setter Property="Visibility" Value="Collapsed"/>
+												</Trigger>
+												<Trigger Property="IsChecked" Value="True">
+													<Setter Property="Opacity" Value="1"/>
+												</Trigger>
+											</Style.Triggers>
+										</Style>
+									</ToggleButton.Style>
+									<Path Stroke="{TemplateBinding Foreground}" Uid="Path_23" VerticalAlignment="Center">
+										<Path.Data>
+											<GeometryGroup>
+												<RectangleGeometry RadiusY="1" RadiusX="1" Rect="0.5,0.5,19,19"/>
+												<EllipseGeometry Center="12,8" RadiusY="5" RadiusX="5"/>
+												<EllipseGeometry Center="12,8" RadiusY="4" RadiusX="4"/>
+												<LineGeometry EndPoint="9,10" StartPoint="2.5,16.5"/>
+												<LineGeometry EndPoint="9.5,10.5" StartPoint="3,17"/>
+												<LineGeometry EndPoint="10,11" StartPoint="3.5,17.5"/>
+											</GeometryGroup>
+										</Path.Data>
+									</Path>
+								</ToggleButton>
+								<Border x:Name="PART_FindToolBarHost" HorizontalAlignment="Left" Uid="Border_64" Visibility="Collapsed" VerticalAlignment="Center"/>
+							</StackPanel>
+							<StackPanel x:Name="PageCountAndButtons" Grid.Column="1" HorizontalAlignment="Center" Orientation="Horizontal" Uid="StackPanel_3" VerticalAlignment="Center">
+								<RepeatButton Command="NavigationCommands.PreviousPage" IsEnabled="{TemplateBinding CanGoToPreviousPage}" ToolTip="Previous Page" Uid="RepeatButton_9" Background="Transparent" Opacity="0.5">
+									<RepeatButton.Style>
+										<Style TargetType="{x:Type RepeatButton}">
+											<Setter Property="Padding" Value="5"/>
+											<Setter Property="Delay" Value="1000"/>
+											<Setter Property="Interval" Value="250"/>
+											<Style.BasedOn>
+												<Style TargetType="{x:Type ButtonBase}">
+													<Setter Property="Focusable" Value="False"/>
+													<Setter Property="Opacity" Value="0.5"/>
+													<Setter Property="Cursor" Value="Hand"/>
+													<Setter Property="Background" Value="Transparent"/>
+													<Setter Property="Padding" Value="3,1"/>
+													<Setter Property="BorderBrush" Value="{x:Null}"/>
+													<Setter Property="BorderThickness" Value="0"/>
+													<Setter Property="MinWidth" Value="0"/>
+													<Setter Property="MinHeight" Value="0"/>
+													<Setter Property="Template">
+														<Setter.Value>
+															<ControlTemplate TargetType="{x:Type ButtonBase}">
+																<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																	<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																</Border>
+																<ControlTemplate.Triggers>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																	<Trigger Property="IsPressed" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																</ControlTemplate.Triggers>
+															</ControlTemplate>
+														</Setter.Value>
+													</Setter>
+													<Style.Triggers>
+														<Trigger Property="IsEnabled" Value="False">
+															<Setter Property="Opacity" Value="0.3"/>
+														</Trigger>
+														<Trigger Property="IsMouseOver" Value="True">
+															<Setter Property="Opacity" Value="1"/>
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</Style.BasedOn>
+										</Style>
+									</RepeatButton.Style>
+									<Viewbox Height="{TemplateBinding FontSize}" Uid="Viewbox_7">
+										<Path Data="M5,0 L5,10 L0,5 z" Fill="White" Uid="Path_18"/>
+									</Viewbox>
+								</RepeatButton>
+								<TextBlock HorizontalAlignment="Center" Uid="TextBlock_8" VerticalAlignment="Center" Foreground="White"><Run Text=" "/><Run Text=" "/><InlineUIContainer>
+										<TextBlock Text="{Binding PageNumber, RelativeSource={RelativeSource TemplatedParent}}" Uid="TextBlock_9"/>
+									</InlineUIContainer><Run Text=" "/><Run Text=" of "/><Run Text=" "/><InlineUIContainer>
+										<TextBlock Text="{Binding PageCount, RelativeSource={RelativeSource TemplatedParent}}" Uid="TextBlock_10"/>
+									</InlineUIContainer><Run Text=" "/><Run Text=" "/></TextBlock>
+								<RepeatButton Command="NavigationCommands.NextPage" IsEnabled="{TemplateBinding CanGoToNextPage}" ToolTip="Next Page" Uid="RepeatButton_10" Opacity="0.5">
+									<RepeatButton.Style>
+										<Style TargetType="{x:Type RepeatButton}">
+											<Setter Property="Padding" Value="5"/>
+											<Setter Property="Delay" Value="1000"/>
+											<Setter Property="Interval" Value="250"/>
+											<Style.BasedOn>
+												<Style TargetType="{x:Type ButtonBase}">
+													<Setter Property="Focusable" Value="False"/>
+													<Setter Property="Opacity" Value="0.5"/>
+													<Setter Property="Cursor" Value="Hand"/>
+													<Setter Property="Background" Value="Transparent"/>
+													<Setter Property="Padding" Value="3,1"/>
+													<Setter Property="BorderBrush" Value="{x:Null}"/>
+													<Setter Property="BorderThickness" Value="0"/>
+													<Setter Property="MinWidth" Value="0"/>
+													<Setter Property="MinHeight" Value="0"/>
+													<Setter Property="Template">
+														<Setter.Value>
+															<ControlTemplate TargetType="{x:Type ButtonBase}">
+																<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																	<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																</Border>
+																<ControlTemplate.Triggers>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																	<Trigger Property="IsPressed" Value="True">
+																		<Setter Property="RenderTransform" TargetName="Content">
+																			<Setter.Value>
+																				<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																			</Setter.Value>
+																		</Setter>
+																	</Trigger>
+																</ControlTemplate.Triggers>
+															</ControlTemplate>
+														</Setter.Value>
+													</Setter>
+													<Style.Triggers>
+														<Trigger Property="IsEnabled" Value="False">
+															<Setter Property="Opacity" Value="0.3"/>
+														</Trigger>
+														<Trigger Property="IsMouseOver" Value="True">
+															<Setter Property="Opacity" Value="1"/>
+														</Trigger>
+													</Style.Triggers>
+												</Style>
+											</Style.BasedOn>
+										</Style>
+									</RepeatButton.Style>
+									<Viewbox Height="{TemplateBinding FontSize}" Uid="Viewbox_8">
+										<Path Data="M0,0 L0,10 L5,5 z" Fill="White" Uid="Path_19"/>
+									</Viewbox>
+								</RepeatButton>
+							</StackPanel>
+							<Grid Grid.Column="2" HorizontalAlignment="Right" Uid="Grid_32" VerticalAlignment="Center">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition Width="Auto"/>
+									<ColumnDefinition/>
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<StackPanel Orientation="Horizontal" Uid="StackPanel_4">
+									<RadioButton x:Name="PageViewButton" CommandParameter="Page" Command="FlowDocumentReader.SwitchViewingModeCommand" GroupName="ViewingMode" IsEnabled="{TemplateBinding IsPageViewEnabled}" ToolTip="Page Mode" Uid="RadioButton_1">
+										<RadioButton.Style>
+											<Style TargetType="{x:Type RadioButton}">
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="{x:Type RadioButton}">
+															<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Uid="Border_40">
+																<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_3"/>
+															</Border>
+															<ControlTemplate.Triggers>
+																<Trigger Property="IsPressed" Value="True">
+																	<Setter Property="RenderTransform" TargetName="Content">
+																		<Setter.Value>
+																			<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																		</Setter.Value>
+																	</Setter>
+																</Trigger>
+															</ControlTemplate.Triggers>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+												<Style.BasedOn>
+													<Style TargetType="{x:Type ToggleButton}">
+														<Style.BasedOn>
+															<Style TargetType="{x:Type ButtonBase}">
+																<Setter Property="Focusable" Value="False"/>
+																<Setter Property="Opacity" Value="0.5"/>
+																<Setter Property="Cursor" Value="Hand"/>
+																<Setter Property="Background" Value="Transparent"/>
+																<Setter Property="Padding" Value="3,1"/>
+																<Setter Property="BorderBrush" Value="{x:Null}"/>
+																<Setter Property="BorderThickness" Value="0"/>
+																<Setter Property="MinWidth" Value="0"/>
+																<Setter Property="MinHeight" Value="0"/>
+																<Setter Property="Template">
+																	<Setter.Value>
+																		<ControlTemplate TargetType="{x:Type ButtonBase}">
+																			<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																				<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																			</Border>
+																			<ControlTemplate.Triggers>
+																				<Trigger Property="IsMouseOver" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																				<Trigger Property="IsPressed" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																			</ControlTemplate.Triggers>
+																		</ControlTemplate>
+																	</Setter.Value>
+																</Setter>
+																<Style.Triggers>
+																	<Trigger Property="IsEnabled" Value="False">
+																		<Setter Property="Opacity" Value="0.3"/>
+																	</Trigger>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="Opacity" Value="1"/>
+																	</Trigger>
+																</Style.Triggers>
+															</Style>
+														</Style.BasedOn>
+														<Style.Triggers>
+															<Trigger Property="IsEnabled" Value="False">
+																<Setter Property="Visibility" Value="Collapsed"/>
+															</Trigger>
+															<Trigger Property="IsChecked" Value="True">
+																<Setter Property="Opacity" Value="1"/>
+															</Trigger>
+														</Style.Triggers>
+													</Style>
+												</Style.BasedOn>
+											</Style>
+										</RadioButton.Style>
+										<Path Stroke="White" Uid="Path_20" VerticalAlignment="Center">
+											<Path.Data>
+												<GeometryGroup>
+													<RectangleGeometry RadiusY="1" RadiusX="1" Rect="0.5,0.5,19,19"/>
+													<RectangleGeometry Rect="4.5,3.5,11,13"/>
+													<LineGeometry EndPoint="15.5,4.5" StartPoint="4.5,4.5"/>
+													<LineGeometry EndPoint="15.5,6.5" StartPoint="4.5,6.5"/>
+													<LineGeometry EndPoint="15.5,8.5" StartPoint="4.5,8.5"/>
+													<LineGeometry EndPoint="15.5,10.5" StartPoint="4.5,10.5"/>
+													<LineGeometry EndPoint="15.5,12.5" StartPoint="4.5,12.5"/>
+													<LineGeometry EndPoint="15.5,14.5" StartPoint="4.5,14.5"/>
+												</GeometryGroup>
+											</Path.Data>
+										</Path>
+									</RadioButton>
+									<RadioButton x:Name="TwoPageViewButton" CommandParameter="TwoPage" Command="FlowDocumentReader.SwitchViewingModeCommand" GroupName="ViewingMode" IsEnabled="{TemplateBinding IsTwoPageViewEnabled}" ToolTip="Two Page Mode" Uid="RadioButton_2">
+										<RadioButton.Style>
+											<Style TargetType="{x:Type RadioButton}">
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="{x:Type RadioButton}">
+															<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Uid="Border_40">
+																<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_3"/>
+															</Border>
+															<ControlTemplate.Triggers>
+																<Trigger Property="IsPressed" Value="True">
+																	<Setter Property="RenderTransform" TargetName="Content">
+																		<Setter.Value>
+																			<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																		</Setter.Value>
+																	</Setter>
+																</Trigger>
+															</ControlTemplate.Triggers>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+												<Style.BasedOn>
+													<Style TargetType="{x:Type ToggleButton}">
+														<Style.BasedOn>
+															<Style TargetType="{x:Type ButtonBase}">
+																<Setter Property="Focusable" Value="False"/>
+																<Setter Property="Opacity" Value="0.5"/>
+																<Setter Property="Cursor" Value="Hand"/>
+																<Setter Property="Background" Value="Transparent"/>
+																<Setter Property="Padding" Value="3,1"/>
+																<Setter Property="BorderBrush" Value="{x:Null}"/>
+																<Setter Property="BorderThickness" Value="0"/>
+																<Setter Property="MinWidth" Value="0"/>
+																<Setter Property="MinHeight" Value="0"/>
+																<Setter Property="Template">
+																	<Setter.Value>
+																		<ControlTemplate TargetType="{x:Type ButtonBase}">
+																			<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																				<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																			</Border>
+																			<ControlTemplate.Triggers>
+																				<Trigger Property="IsMouseOver" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																				<Trigger Property="IsPressed" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																			</ControlTemplate.Triggers>
+																		</ControlTemplate>
+																	</Setter.Value>
+																</Setter>
+																<Style.Triggers>
+																	<Trigger Property="IsEnabled" Value="False">
+																		<Setter Property="Opacity" Value="0.3"/>
+																	</Trigger>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="Opacity" Value="1"/>
+																	</Trigger>
+																</Style.Triggers>
+															</Style>
+														</Style.BasedOn>
+														<Style.Triggers>
+															<Trigger Property="IsEnabled" Value="False">
+																<Setter Property="Visibility" Value="Collapsed"/>
+															</Trigger>
+															<Trigger Property="IsChecked" Value="True">
+																<Setter Property="Opacity" Value="1"/>
+															</Trigger>
+														</Style.Triggers>
+													</Style>
+												</Style.BasedOn>
+											</Style>
+										</RadioButton.Style>
+										<Path Stroke="White" Uid="Path_21" VerticalAlignment="Center">
+											<Path.Data>
+												<GeometryGroup>
+													<RectangleGeometry RadiusY="1" RadiusX="1" Rect="0.5,0.5,19,19"/>
+													<RectangleGeometry Rect="3.5,3.5,5,13"/>
+													<LineGeometry EndPoint="8.5,4.5" StartPoint="3.5,4.5"/>
+													<LineGeometry EndPoint="8.5,6.5" StartPoint="3.5,6.5"/>
+													<LineGeometry EndPoint="8.5,8.5" StartPoint="3.5,8.5"/>
+													<LineGeometry EndPoint="8.5,10.5" StartPoint="3.5,10.5"/>
+													<LineGeometry EndPoint="8.5,12.5" StartPoint="3.5,12.5"/>
+													<LineGeometry EndPoint="8.5,14.5" StartPoint="3.5,14.5"/>
+													<RectangleGeometry Rect="11.5,3.5,5,13"/>
+													<LineGeometry EndPoint="16.5,4.5" StartPoint="11.5,4.5"/>
+													<LineGeometry EndPoint="16.5,6.5" StartPoint="11.5,6.5"/>
+													<LineGeometry EndPoint="16.5,8.5" StartPoint="11.5,8.5"/>
+													<LineGeometry EndPoint="16.5,10.5" StartPoint="11.5,10.5"/>
+													<LineGeometry EndPoint="16.5,12.5" StartPoint="11.5,12.5"/>
+													<LineGeometry EndPoint="16.5,14.5" StartPoint="11.5,14.5"/>
+												</GeometryGroup>
+											</Path.Data>
+										</Path>
+									</RadioButton>
+									<RadioButton x:Name="ScrollViewButton" CommandParameter="Scroll" Command="FlowDocumentReader.SwitchViewingModeCommand" GroupName="ViewingMode" IsEnabled="{TemplateBinding IsScrollViewEnabled}" ToolTip="Scroll Mode" Uid="RadioButton_3">
+										<RadioButton.Style>
+											<Style TargetType="{x:Type RadioButton}">
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="{x:Type RadioButton}">
+															<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" Uid="Border_40">
+																<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_3"/>
+															</Border>
+															<ControlTemplate.Triggers>
+																<Trigger Property="IsPressed" Value="True">
+																	<Setter Property="RenderTransform" TargetName="Content">
+																		<Setter.Value>
+																			<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																		</Setter.Value>
+																	</Setter>
+																</Trigger>
+															</ControlTemplate.Triggers>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+												<Style.BasedOn>
+													<Style TargetType="{x:Type ToggleButton}">
+														<Style.BasedOn>
+															<Style TargetType="{x:Type ButtonBase}">
+																<Setter Property="Focusable" Value="False"/>
+																<Setter Property="Opacity" Value="0.5"/>
+																<Setter Property="Cursor" Value="Hand"/>
+																<Setter Property="Background" Value="Transparent"/>
+																<Setter Property="Padding" Value="3,1"/>
+																<Setter Property="BorderBrush" Value="{x:Null}"/>
+																<Setter Property="BorderThickness" Value="0"/>
+																<Setter Property="MinWidth" Value="0"/>
+																<Setter Property="MinHeight" Value="0"/>
+																<Setter Property="Template">
+																	<Setter.Value>
+																		<ControlTemplate TargetType="{x:Type ButtonBase}">
+																			<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																				<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																			</Border>
+																			<ControlTemplate.Triggers>
+																				<Trigger Property="IsMouseOver" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																				<Trigger Property="IsPressed" Value="True">
+																					<Setter Property="RenderTransform" TargetName="Content">
+																						<Setter.Value>
+																							<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																						</Setter.Value>
+																					</Setter>
+																				</Trigger>
+																			</ControlTemplate.Triggers>
+																		</ControlTemplate>
+																	</Setter.Value>
+																</Setter>
+																<Style.Triggers>
+																	<Trigger Property="IsEnabled" Value="False">
+																		<Setter Property="Opacity" Value="0.3"/>
+																	</Trigger>
+																	<Trigger Property="IsMouseOver" Value="True">
+																		<Setter Property="Opacity" Value="1"/>
+																	</Trigger>
+																</Style.Triggers>
+															</Style>
+														</Style.BasedOn>
+														<Style.Triggers>
+															<Trigger Property="IsEnabled" Value="False">
+																<Setter Property="Visibility" Value="Collapsed"/>
+															</Trigger>
+															<Trigger Property="IsChecked" Value="True">
+																<Setter Property="Opacity" Value="1"/>
+															</Trigger>
+														</Style.Triggers>
+													</Style>
+												</Style.BasedOn>
+											</Style>
+										</RadioButton.Style>
+										<Path Stroke="White" Uid="Path_22" VerticalAlignment="Center">
+											<Path.Data>
+												<GeometryGroup>
+													<RectangleGeometry RadiusY="1" RadiusX="1" Rect="0.5,0.5,19,19"/>
+													<RectangleGeometry Rect="3.5,3.5,8,13"/>
+													<LineGeometry EndPoint="11.5,4.5" StartPoint="3.5,4.5"/>
+													<LineGeometry EndPoint="11.5,6.5" StartPoint="3.5,6.5"/>
+													<LineGeometry EndPoint="11.5,8.5" StartPoint="3.5,8.5"/>
+													<LineGeometry EndPoint="11.5,10.5" StartPoint="3.5,10.5"/>
+													<LineGeometry EndPoint="11.5,12.5" StartPoint="3.5,12.5"/>
+													<LineGeometry EndPoint="11.5,14.5" StartPoint="3.5,14.5"/>
+													<RectangleGeometry Rect="13.5,3.5,3,13"/>
+													<RectangleGeometry Rect="14.5,4.5,1,3"/>
+													<RectangleGeometry Rect="14.5,12.5,1,3"/>
+												</GeometryGroup>
+											</Path.Data>
+										</Path>
+									</RadioButton>
+								</StackPanel>
+								<RepeatButton BorderBrush="{TemplateBinding BorderBrush}" Grid.Column="1" Command="NavigationCommands.DecreaseZoom" Foreground="{TemplateBinding Foreground}" Height="{TemplateBinding FontSize}" IsEnabled="{TemplateBinding CanDecreaseZoom}" ToolTip="Decrease Zoom" Uid="RepeatButton_11" Width="{TemplateBinding FontSize}" Opacity="0.9">
+									<RepeatButton.Background>
+										<SolidColorBrush Color="White"/>
+									</RepeatButton.Background>
+									<RepeatButton.LayoutTransform>
+										<ScaleTransform ScaleY="2.2" ScaleX="2.2"/>
+									</RepeatButton.LayoutTransform>
+									<RepeatButton.Style>
+										<Style TargetType="{x:Type RepeatButton}">
+											<Setter Property="Padding" Value="2,2,0,2"/>
+											<Setter Property="Template">
+												<Setter.Value>
+													<ControlTemplate TargetType="{x:Type RepeatButton}">
+														<Border Background="Transparent" Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Uid="Border_41">
+															<Viewbox x:Name="Content" RenderTransformOrigin="0.5,0.5" Uid="Viewbox_2">
+																<Canvas Height="32" Uid="Canvas_4" Width="32">
+																	<Path Fill="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" Height="32" Uid="Path_7" Width="32">
+																		<Path.Data>
+																			<GeometryGroup>
+																				<EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+																			</GeometryGroup>
+																		</Path.Data>
+																	</Path>
+																	<Path x:Name="Sheen" Height="32" Uid="Path_8" Width="32">
+																		<Path.Data>
+																			<GeometryGroup>
+																				<EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+																			</GeometryGroup>
+																		</Path.Data>
+																		<Path.Fill>
+																			<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+																				<GradientStop Color="#99FFFFFF" Offset="0"/>
+																				<GradientStop Color="#66000000" Offset="1"/>
+																			</LinearGradientBrush>
+																		</Path.Fill>
+																	</Path>
+																	<Path Canvas.Left="16" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" StrokeThickness="5" Canvas.Top="16" Uid="Path_9">
+																		<Path.Data>
+																			<LineGeometry EndPoint="10,0" StartPoint="-10,0"/>
+																		</Path.Data>
+																	</Path>
+																</Canvas>
+															</Viewbox>
+														</Border>
+														<ControlTemplate.Triggers>
+															<Trigger Property="IsMouseOver" Value="True">
+																<Setter Property="RenderTransform" TargetName="Content">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+															<Trigger Property="IsPressed" Value="True">
+																<Setter Property="RenderTransform" TargetName="Content">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1" ScaleX="1"/>
+																	</Setter.Value>
+																</Setter>
+																<Setter Property="Fill" TargetName="Sheen">
+																	<Setter.Value>
+																		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+																			<GradientStop Color="#99000000" Offset="0"/>
+																			<GradientStop Color="#66FFFFFF" Offset="1"/>
+																		</LinearGradientBrush>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+														</ControlTemplate.Triggers>
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+											<Style.BasedOn>
+												<Style TargetType="{x:Type RepeatButton}">
+													<Setter Property="Padding" Value="5"/>
+													<Setter Property="Delay" Value="1000"/>
+													<Setter Property="Interval" Value="250"/>
+													<Style.BasedOn>
+														<Style TargetType="{x:Type ButtonBase}">
+															<Setter Property="Focusable" Value="False"/>
+															<Setter Property="Opacity" Value="0.5"/>
+															<Setter Property="Cursor" Value="Hand"/>
+															<Setter Property="Background" Value="Transparent"/>
+															<Setter Property="Padding" Value="3,1"/>
+															<Setter Property="BorderBrush" Value="{x:Null}"/>
+															<Setter Property="BorderThickness" Value="0"/>
+															<Setter Property="MinWidth" Value="0"/>
+															<Setter Property="MinHeight" Value="0"/>
+															<Setter Property="Template">
+																<Setter.Value>
+																	<ControlTemplate TargetType="{x:Type ButtonBase}">
+																		<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																			<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																		</Border>
+																		<ControlTemplate.Triggers>
+																			<Trigger Property="IsMouseOver" Value="True">
+																				<Setter Property="RenderTransform" TargetName="Content">
+																					<Setter.Value>
+																						<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																					</Setter.Value>
+																				</Setter>
+																			</Trigger>
+																			<Trigger Property="IsPressed" Value="True">
+																				<Setter Property="RenderTransform" TargetName="Content">
+																					<Setter.Value>
+																						<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																					</Setter.Value>
+																				</Setter>
+																			</Trigger>
+																		</ControlTemplate.Triggers>
+																	</ControlTemplate>
+																</Setter.Value>
+															</Setter>
+															<Style.Triggers>
+																<Trigger Property="IsEnabled" Value="False">
+																	<Setter Property="Opacity" Value="0.3"/>
+																</Trigger>
+																<Trigger Property="IsMouseOver" Value="True">
+																	<Setter Property="Opacity" Value="1"/>
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</Style.BasedOn>
+												</Style>
+											</Style.BasedOn>
+										</Style>
+									</RepeatButton.Style>
+								</RepeatButton>
+								<Slider Grid.Column="2" FontSize="{TemplateBinding FontSize}" HorizontalAlignment="Stretch" LargeChange="{TemplateBinding ZoomIncrement}" Maximum="{TemplateBinding MaxZoom}" Minimum="{TemplateBinding MinZoom}" SmallChange="{TemplateBinding ZoomIncrement}" TickFrequency="{TemplateBinding ZoomIncrement}" Uid="Slider_3" Value="{Binding Zoom, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center" Width="100">
+									<Slider.Style>
+										<Style TargetType="{x:Type Slider}">
+											<Setter Property="Stylus.IsPressAndHoldEnabled" Value="False"/>
+											<Setter Property="Focusable" Value="False"/>
+											<Setter Property="OverridesDefaultStyle" Value="True"/>
+											<Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+											<Setter Property="BorderThickness" Value="1"/>
+											<Setter Property="BorderBrush" Value="#00000000"/>
+											<Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}"/>
+											<Setter Property="IsSnapToTickEnabled" Value="True"/>
+											<Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+											<Setter Property="MinWidth" Value="50"/>
+											<Setter Property="MinHeight" Value="0"/>
+											<Setter Property="Width" Value="Auto"/>
+											<Setter Property="Padding" Value="2,0"/>
+											<Setter Property="Height" Value="Auto"/>
+											<Setter Property="Opacity" Value="0.75"/>
+											<Setter Property="Delay" Value="1000"/>
+											<Setter Property="Interval" Value="250"/>
+											<Setter Property="Template">
+												<Setter.Value>
+													<ControlTemplate TargetType="{x:Type Slider}">
+														<Border Background="Transparent" Padding="{TemplateBinding Padding}" Uid="Border_45">
+															<Grid ClipToBounds="False" Uid="Grid_22">
+																<Grid.ColumnDefinitions>
+																	<ColumnDefinition Width="*"/>
+																</Grid.ColumnDefinitions>
+																<Grid.RowDefinitions>
+																	<RowDefinition Height="Auto"/>
+																	<RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+																	<RowDefinition Height="Auto"/>
+																	<RowDefinition Height="*"/>
+																</Grid.RowDefinitions>
+																<TickBar x:Name="TopTick" Fill="{TemplateBinding Foreground}" Height="4" Placement="Top" Grid.Row="0" Uid="TickBar_1" Visibility="Collapsed"/>
+																<Border Background="{TemplateBinding Foreground}" CornerRadius="2" Height="2" Opacity="0.5" Grid.Row="1" Uid="Border_46"/>
+																<Canvas Height="4" Grid.Row="1" Uid="Canvas_7" VerticalAlignment="Center">
+																	<Rectangle x:Name="PART_SelectionRange" Fill="{TemplateBinding Foreground}" Height="2" Canvas.Top="1" Uid="Rectangle_17" Visibility="Hidden"/>
+																</Canvas>
+																<Track x:Name="PART_Track" Grid.Row="1" Uid="PART_Track">
+																	<Track.DecreaseRepeatButton>
+																		<RepeatButton Command="Slider.DecreaseLarge" Uid="RepeatButton_1">
+																			<RepeatButton.Style>
+																				<Style TargetType="{x:Type RepeatButton}">
+																					<Setter Property="OverridesDefaultStyle" Value="True"/>
+																					<Setter Property="IsTabStop" Value="False"/>
+																					<Setter Property="Focusable" Value="False"/>
+																					<Setter Property="Template">
+																						<Setter.Value>
+																							<ControlTemplate TargetType="{x:Type RepeatButton}">
+																								<Border Background="Transparent" Uid="Border_43"/>
+																							</ControlTemplate>
+																						</Setter.Value>
+																					</Setter>
+																				</Style>
+																			</RepeatButton.Style>
+																		</RepeatButton>
+																	</Track.DecreaseRepeatButton>
+																	<Track.IncreaseRepeatButton>
+																		<RepeatButton Command="Slider.IncreaseLarge" Uid="RepeatButton_2">
+																			<RepeatButton.Style>
+																				<Style TargetType="{x:Type RepeatButton}">
+																					<Setter Property="OverridesDefaultStyle" Value="True"/>
+																					<Setter Property="IsTabStop" Value="False"/>
+																					<Setter Property="Focusable" Value="False"/>
+																					<Setter Property="Template">
+																						<Setter.Value>
+																							<ControlTemplate TargetType="{x:Type RepeatButton}">
+																								<Border Background="Transparent" Uid="Border_43"/>
+																							</ControlTemplate>
+																						</Setter.Value>
+																					</Setter>
+																				</Style>
+																			</RepeatButton.Style>
+																		</RepeatButton>
+																	</Track.IncreaseRepeatButton>
+																	<Track.Thumb>
+																		<Thumb Background="{TemplateBinding Background}" Uid="Thumb_5">
+																			<Thumb.Style>
+																				<Style TargetType="{x:Type Thumb}">
+																					<Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}"/>
+																					<Setter Property="Focusable" Value="False"/>
+																					<Setter Property="OverridesDefaultStyle" Value="True"/>
+																					<Setter Property="Cursor" Value="Hand"/>
+																					<Setter Property="Padding" Value="6"/>
+																					<Setter Property="Template">
+																						<Setter.Value>
+																							<ControlTemplate TargetType="{x:Type Thumb}">
+																								<Border Background="Transparent" Margin="-2" Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Uid="Border_44">
+																									<Viewbox HorizontalAlignment="Center" Uid="Viewbox_4" VerticalAlignment="Center" Width="{Binding FontSize, RelativeSource={RelativeSource TemplatedParent}}">
+																										<Viewbox.LayoutTransform>
+																											<ScaleTransform ScaleY="1" ScaleX="1"/>
+																										</Viewbox.LayoutTransform>
+																										<Canvas Height="17" Uid="Canvas_6" Width="13">
+																											<Path Data="F1 M1,0 L10,0 L11,1 L11,13 L6.5,17 L4.5,17 L0,13 L0,1 L1,0 z" Fill="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" Uid="Path_13"/>
+																											<Path Data="F1 M1,0 L10,0 L11,1 L11,13 L6.5,17 L4.5,17 L0,13 L0,1 L1,0 z" StrokeEndLineCap="Round" StrokeDashCap="Round" Stroke="{TemplateBinding Background}" StrokeThickness="0.75" StrokeMiterLimit="1" StrokeLineJoin="Round" Uid="Path_14">
+																												<Path.Fill>
+																													<LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+																														<LinearGradientBrush.RelativeTransform>
+																															<TransformGroup>
+																																<TranslateTransform X="-0.5" Y="-0.5"/>
+																																<ScaleTransform ScaleY="1" ScaleX="1"/>
+																																<SkewTransform AngleY="0" AngleX="0"/>
+																																<RotateTransform Angle="110"/>
+																																<TranslateTransform X="0.5" Y="0.5"/>
+																															</TransformGroup>
+																														</LinearGradientBrush.RelativeTransform>
+																														<GradientStop Color="#CC999999" Offset="0.5"/>
+																														<GradientStop Color="#CCFFFFFF" Offset="0.8"/>
+																														<GradientStop Color="#CCFFFFFF" Offset="0.2"/>
+																													</LinearGradientBrush>
+																												</Path.Fill>
+																											</Path>
+																										</Canvas>
+																									</Viewbox>
+																								</Border>
+																							</ControlTemplate>
+																						</Setter.Value>
+																					</Setter>
+																				</Style>
+																			</Thumb.Style>
+																		</Thumb>
+																	</Track.Thumb>
+																</Track>
+																<TickBar x:Name="BottomTick" Fill="{TemplateBinding Foreground}" Height="4" Placement="Bottom" Grid.Row="2" Uid="TickBar_2" Visibility="Collapsed"/>
+															</Grid>
+														</Border>
+														<ControlTemplate.Triggers>
+															<Trigger Property="TickPlacement" Value="TopLeft">
+																<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+															</Trigger>
+															<Trigger Property="TickPlacement" Value="BottomRight">
+																<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+															</Trigger>
+															<Trigger Property="TickPlacement" Value="Both">
+																<Setter Property="Visibility" TargetName="TopTick" Value="Visible"/>
+																<Setter Property="Visibility" TargetName="BottomTick" Value="Visible"/>
+															</Trigger>
+															<Trigger Property="IsSelectionRangeEnabled" Value="True">
+																<Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+															</Trigger>
+															<Trigger Property="IsMouseOver" Value="True">
+																<Setter Property="RenderTransform">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1.05" ScaleX="1.05"/>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+															<Trigger Property="IsMouseOver" Value="True">
+																<Setter Property="Opacity" Value="1"/>
+																<Setter Property="RenderTransform">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1.05" ScaleX="1.05"/>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+															<Trigger Property="IsEnabled" Value="False">
+																<Setter Property="Opacity" Value="0.3"/>
+															</Trigger>
+														</ControlTemplate.Triggers>
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+										</Style>
+									</Slider.Style>
+								</Slider>
+								<RepeatButton BorderBrush="{TemplateBinding BorderBrush}" Grid.Column="3" Command="NavigationCommands.IncreaseZoom" Foreground="{TemplateBinding Foreground}" Height="{TemplateBinding FontSize}" IsEnabled="{TemplateBinding CanIncreaseZoom}" ToolTip="Increase Zoom" Uid="RepeatButton_12" Width="{TemplateBinding FontSize}" Opacity="0.9" Background="White">
+									<RepeatButton.LayoutTransform>
+										<ScaleTransform ScaleY="2.2" ScaleX="2.2"/>
+									</RepeatButton.LayoutTransform>
+									<RepeatButton.Style>
+										<Style TargetType="{x:Type RepeatButton}">
+											<Setter Property="Padding" Value="0,2,2,2"/>
+											<Setter Property="Template">
+												<Setter.Value>
+													<ControlTemplate TargetType="{x:Type RepeatButton}">
+														<Border Background="Transparent" Padding="{Binding Padding, RelativeSource={RelativeSource TemplatedParent}}" Uid="Border_42">
+															<Viewbox x:Name="Content" RenderTransformOrigin="0.5,0.5" Uid="Viewbox_3">
+																<Canvas Height="32" Uid="Canvas_5" Width="32">
+																	<Path Fill="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" Height="32" Uid="Path_10" Width="32">
+																		<Path.Data>
+																			<GeometryGroup>
+																				<EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+																			</GeometryGroup>
+																		</Path.Data>
+																	</Path>
+																	<Path x:Name="Sheen" Height="32" Uid="Path_11" Width="32">
+																		<Path.Data>
+																			<GeometryGroup>
+																				<EllipseGeometry Center="16,16" RadiusY="16" RadiusX="16"/>
+																			</GeometryGroup>
+																		</Path.Data>
+																		<Path.Fill>
+																			<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+																				<GradientStop Color="#99FFFFFF" Offset="0"/>
+																				<GradientStop Color="#66000000" Offset="1"/>
+																			</LinearGradientBrush>
+																		</Path.Fill>
+																	</Path>
+																	<Path Canvas.Left="16" Stroke="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" StrokeThickness="5" Canvas.Top="16" Uid="Path_12">
+																		<Path.Data>
+																			<GeometryGroup>
+																				<LineGeometry EndPoint="10,0" StartPoint="-10,0"/>
+																				<LineGeometry EndPoint="0,10" StartPoint="0,-10"/>
+																			</GeometryGroup>
+																		</Path.Data>
+																	</Path>
+																</Canvas>
+															</Viewbox>
+														</Border>
+														<ControlTemplate.Triggers>
+															<Trigger Property="IsMouseOver" Value="True">
+																<Setter Property="RenderTransform" TargetName="Content">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+															<Trigger Property="IsPressed" Value="True">
+																<Setter Property="RenderTransform" TargetName="Content">
+																	<Setter.Value>
+																		<ScaleTransform ScaleY="1" ScaleX="1"/>
+																	</Setter.Value>
+																</Setter>
+																<Setter Property="Fill" TargetName="Sheen">
+																	<Setter.Value>
+																		<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+																			<GradientStop Color="#99000000" Offset="0"/>
+																			<GradientStop Color="#66FFFFFF" Offset="1"/>
+																		</LinearGradientBrush>
+																	</Setter.Value>
+																</Setter>
+															</Trigger>
+														</ControlTemplate.Triggers>
+													</ControlTemplate>
+												</Setter.Value>
+											</Setter>
+											<Style.BasedOn>
+												<Style TargetType="{x:Type RepeatButton}">
+													<Setter Property="Padding" Value="5"/>
+													<Setter Property="Delay" Value="1000"/>
+													<Setter Property="Interval" Value="250"/>
+													<Style.BasedOn>
+														<Style TargetType="{x:Type ButtonBase}">
+															<Setter Property="Focusable" Value="False"/>
+															<Setter Property="Opacity" Value="0.5"/>
+															<Setter Property="Cursor" Value="Hand"/>
+															<Setter Property="Background" Value="Transparent"/>
+															<Setter Property="Padding" Value="3,1"/>
+															<Setter Property="BorderBrush" Value="{x:Null}"/>
+															<Setter Property="BorderThickness" Value="0"/>
+															<Setter Property="MinWidth" Value="0"/>
+															<Setter Property="MinHeight" Value="0"/>
+															<Setter Property="Template">
+																<Setter.Value>
+																	<ControlTemplate TargetType="{x:Type ButtonBase}">
+																		<Border Background="{TemplateBinding Background}" Uid="Border_39">
+																			<ContentPresenter x:Name="Content" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" RenderTransformOrigin="0.5,0.5" Uid="ContentPresenter_2"/>
+																		</Border>
+																		<ControlTemplate.Triggers>
+																			<Trigger Property="IsMouseOver" Value="True">
+																				<Setter Property="RenderTransform" TargetName="Content">
+																					<Setter.Value>
+																						<ScaleTransform ScaleY="1.1" ScaleX="1.1"/>
+																					</Setter.Value>
+																				</Setter>
+																			</Trigger>
+																			<Trigger Property="IsPressed" Value="True">
+																				<Setter Property="RenderTransform" TargetName="Content">
+																					<Setter.Value>
+																						<ScaleTransform ScaleY="0.9" ScaleX="0.9"/>
+																					</Setter.Value>
+																				</Setter>
+																			</Trigger>
+																		</ControlTemplate.Triggers>
+																	</ControlTemplate>
+																</Setter.Value>
+															</Setter>
+															<Style.Triggers>
+																<Trigger Property="IsEnabled" Value="False">
+																	<Setter Property="Opacity" Value="0.3"/>
+																</Trigger>
+																<Trigger Property="IsMouseOver" Value="True">
+																	<Setter Property="Opacity" Value="1"/>
+																</Trigger>
+															</Style.Triggers>
+														</Style>
+													</Style.BasedOn>
+												</Style>
+											</Style.BasedOn>
+										</Style>
+									</RepeatButton.Style>
+								</RepeatButton>
+							</Grid>
+						</Grid>
+						<Grid Uid="Grid_33">
+							<Rectangle Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+								<Rectangle.Effect>
+									<DropShadowEffect Opacity="0.5" BlurRadius="15"/>
+								</Rectangle.Effect>
+							</Rectangle>
+							<Border x:Name="PART_ContentHost" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" KeyboardNavigation.IsTabStop="False" Margin="{TemplateBinding Padding}" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" Uid="Border_59"/>
+						</Grid>
+					</DockPanel>
+					<ControlTemplate.Triggers>
+						<Trigger Property="ViewingMode" Value="Page">
+							<Setter Property="IsChecked" TargetName="PageViewButton" Value="True"/>
+						</Trigger>
+						<Trigger Property="ViewingMode" Value="TwoPage">
+							<Setter Property="IsChecked" TargetName="TwoPageViewButton" Value="True"/>
+						</Trigger>
+						<Trigger Property="ViewingMode" Value="Scroll">
+							<Setter Property="IsChecked" TargetName="ScrollViewButton" Value="True"/>
+							<Setter Property="Visibility" TargetName="PageCountAndButtons" Value="Collapsed"/>
+						</Trigger>
+						<Trigger Property="Document" Value="{x:Null}">
+							<Setter Property="IsEnabled" TargetName="FindButton" Value="False"/>
+						</Trigger>
+						<Trigger Property="IsFindEnabled" Value="False">
+							<Setter Property="IsEnabled" TargetName="FindButton" Value="False"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsInactiveSelectionHighlightEnabled" Value="True"/>
+					<Condition Property="IsSelectionActive" Value="False"/>
+				</MultiTrigger.Conditions>
+				<Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+	<Style x:Key="FlowDocumentReaderAS" TargetType="{x:Type FlowDocumentReader}">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type FlowDocumentReader}">
+					<DockPanel Language="en-us" LastChildFill="True" Uid="DockPanel_3">
+						<Grid Uid="Grid_33">
+							<Border x:Name="PART_ContentHost" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" KeyboardNavigation.IsTabStop="False" Margin="{TemplateBinding Padding}" KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local" Uid="Border_59"/>
+							<Rectangle Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+								<Rectangle.Effect>
+									<DropShadowEffect BlurRadius="13" ShadowDepth="10" Opacity="0.5"/>
+								</Rectangle.Effect>
+							</Rectangle>
+						</Grid>
+					</DockPanel>
+					<ControlTemplate.Triggers>
+						<Trigger Property="ViewingMode" Value="Page"/>
+						<Trigger Property="ViewingMode" Value="TwoPage"/>
+						<Trigger Property="ViewingMode" Value="Scroll"/>
+						<Trigger Property="Document" Value="{x:Null}"/>
+						<Trigger Property="IsFindEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsInactiveSelectionHighlightEnabled" Value="True"/>
+					<Condition Property="IsSelectionActive" Value="False"/>
+				</MultiTrigger.Conditions>
+				<Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+	<BorderGapMaskConverter x:Key="BorderGapMaskConverter"/>
+	<Style x:Key="GroupBoxMS" TargetType="{x:Type GroupBox}">
+		<Setter Property="BorderBrush" Value="#D5DFE5"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type GroupBox}">
+					<Grid SnapsToDevicePixels="true">
+						<Rectangle Fill="White" HorizontalAlignment="Stretch" Height="Auto" Stroke="#FF4D4D4D" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.25" RadiusY="5.75" RadiusX="5.75"/>
+						<ContentPresenter Grid.ColumnSpan="1" Grid.Column="3" Margin="0" Grid.Row="0" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.RowSpan="4"/>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
+		<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+			<Grid>
+				<AdornerDecorator>
+					<ContentPresenter/>
+				</AdornerDecorator>
+				<ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom"/>
+			</Grid>
+		</Border>
+		<ControlTemplate.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+					<Condition Property="WindowState" Value="Normal"/>
+				</MultiTrigger.Conditions>
+				<Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+			</MultiTrigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+	<Style x:Key="WindowMS" TargetType="{x:Type Window}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Window}">
+					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0" Background="{TemplateBinding Background}">
+						<AdornerDecorator>
+							<ContentPresenter/>
+						</AdornerDecorator>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+				<Setter Property="Template" Value="{StaticResource WindowTemplateKey}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+	<Style x:Key="ButtonStyleAS" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<Grid x:Name="Grid">
+						
+						<!-- Content Presenter is where the text content etc is placed by the control -->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFAEACAC"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="White"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+							<Rectangle.Effect>
+								<DropShadowEffect Opacity="0.6" BlurRadius="18"/>
+							</Rectangle.Effect>
+						</Rectangle>
+						<Image HorizontalAlignment="Left" Height="30.25" Margin="3.75,3.5,0,0" VerticalAlignment="Top" Width="30.5" Source="GEAR.png" Opacity="0.85"/>
+						
+					</Grid>
+					
+					<!--Each state sets a brush on the Border in the template -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true"/>
+						<Trigger Property="IsMouseOver" Value="true"/>
+						<Trigger Property="IsPressed" Value="true"/>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="CloseButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<Grid x:Name="Grid">
+						
+						<!-- Content Presenter is where the text content etc is placed by the control -->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFAEACAC"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="White"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+							<Rectangle.Effect>
+								<DropShadowEffect Opacity="0.6" BlurRadius="18"/>
+							</Rectangle.Effect>
+						</Rectangle>
+						<Image HorizontalAlignment="Stretch" Height="Auto" Margin="2.333,1.917,1.917,2.166" VerticalAlignment="Stretch" Width="Auto" Source="CROSS.png" Opacity="0.85"/>
+						
+					</Grid>
+					
+					<!--Each state sets a brush on the Border in the template -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true"/>
+						<Trigger Property="IsMouseOver" Value="true"/>
+						<Trigger Property="IsPressed" Value="true"/>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<Style x:Key="MinButton" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<Grid x:Name="Grid">
+						
+						<!-- Content Presenter is where the text content etc is placed by the control -->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal"/>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFAEACAC"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="White"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="Black" HorizontalAlignment="Stretch" Height="Auto" Stroke="Black" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.5">
+							<Rectangle.Effect>
+								<DropShadowEffect Opacity="0.6" BlurRadius="18"/>
+							</Rectangle.Effect>
+						</Rectangle>
+						<Image HorizontalAlignment="Stretch" Height="Auto" Margin="2.666,7.417,1.584,-3.334" VerticalAlignment="Stretch" Width="Auto" Source="LINE.png" Opacity="0.85"/>
+						
+					</Grid>
+					
+					<!--Each state sets a brush on the Border in the template -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true"/>
+						<Trigger Property="IsMouseOver" Value="true"/>
+						<Trigger Property="IsPressed" Value="true"/>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+		<GradientStop Color="#ABADB3" Offset="0.05"/>
+		<GradientStop Color="#E2E3EA" Offset="0.07"/>
+		<GradientStop Color="#E3E9EF" Offset="1"/>
+	</LinearGradientBrush>
+	<Style x:Key="TextBoxMS" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+		<Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Padding" Value="1"/>
+		<Setter Property="AllowDrop" Value="true"/>
+		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+		<Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<Grid>
+						<Rectangle Fill="#FFFFF8F8" HorizontalAlignment="Stretch" Stroke="Black" StrokeThickness="2" VerticalAlignment="Stretch" Width="Auto" Opacity="0.45"/>
+						<Themes:ListBoxChrome x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{x:Null}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" SnapsToDevicePixels="true" BorderBrush="{x:Null}">
+							<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+						</Themes:ListBoxChrome>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+							<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsInactiveSelectionHighlightEnabled" Value="true"/>
+					<Condition Property="IsSelectionActive" Value="false"/>
+				</MultiTrigger.Conditions>
+				<Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+	<Style x:Key="ButtonMSWhite" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource SimpleButtonFocusVisual}"/>
+		<Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<!-- We use Grid as a root because it is easy to add more elements to customize the button -->
+					<Grid x:Name="Grid">
+						
+						<!-- Content Presenter is where the text content etc is placed by the control -->
+						<VisualStateManager.VisualStateGroups>
+							<VisualStateGroup x:Name="CommonStates">
+								<VisualState x:Name="Normal">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FF898787"/>
+										</ColorAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="MouseOver">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Pressed">
+									<Storyboard>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0.75"/>
+										</DoubleAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="#FFAEACAC"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="2"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+								<VisualState x:Name="Disabled">
+									<Storyboard>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="Black"/>
+										</ColorAnimationUsingKeyFrames>
+										<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="rectangle">
+											<EasingColorKeyFrame KeyTime="0" Value="White"/>
+										</ColorAnimationUsingKeyFrames>
+										<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.StrokeThickness)" Storyboard.TargetName="rectangle">
+											<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+										</DoubleAnimationUsingKeyFrames>
+									</Storyboard>
+								</VisualState>
+							</VisualStateGroup>
+						</VisualStateManager.VisualStateGroups>
+						<Rectangle x:Name="rectangle" Fill="White" HorizontalAlignment="Stretch" Height="Auto" Stroke="#FF8D8B8B" StrokeThickness="3" VerticalAlignment="Stretch" Width="Auto" Opacity="0.55"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RecognizesAccessKey="True" TextBlock.FontFamily="Tahoma" TextBlock.Foreground="White"/>
+						
+					</Grid>
+					
+					<!--Each state sets a brush on the Border in the template -->
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsKeyboardFocused" Value="true"/>
+						<Trigger Property="IsMouseOver" Value="true"/>
+						<Trigger Property="IsPressed" Value="true"/>
+						<Trigger Property="IsEnabled" Value="true"/>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!-- Resource dictionary entries should be defined here. -->
+</ResourceDictionary>
